@@ -11,6 +11,7 @@ import { UsersService } from './users.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { Roles } from '../auth/decorators/roles.decorator';
 import { RolesGuard } from '../auth/guards/roles.guard';
+import { TipoUsuario } from '../common/enums/tipo-usuario.enum';
 
 @Controller('users')
 export class UsersController {
@@ -21,9 +22,10 @@ export class UsersController {
     return this.usersService.create(data);
   }
 
-  @Roles('ADMIN')
+  @Roles(TipoUsuario.ADMIN)
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Get()
+
   findAll() {
     return this.usersService.findAll();
   }

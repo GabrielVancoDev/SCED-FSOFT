@@ -6,11 +6,7 @@ import {
   MinLength,
 } from 'class-validator';
 
-enum TipoUsuario {
-  ADMIN = 'ADMIN',
-  COMUM = 'COMUM',
-  ESPECIAL = 'ESPECIAL',
-}
+import { TipoUsuario } from '../../common/enums/tipo-usuario.enum';
 
 export class CreateUserDto {
   @IsString()
