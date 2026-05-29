@@ -21,12 +21,12 @@ export class UsersController {
     return this.usersService.create(data);
   }
 
-@UseGuards(JwtAuthGuard, RolesGuard)
-@Roles('ADMIN')
-@Get()
-findAll() {
-  return this.usersService.findAll();
-}
+  @Roles('ADMIN')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Get()
+  findAll() {
+    return this.usersService.findAll();
+  }
 
   @UseGuards(JwtAuthGuard)
   @Get('perfil')
