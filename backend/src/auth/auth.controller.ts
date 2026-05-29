@@ -1,4 +1,15 @@
-import { Controller } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
+
+import { AuthService } from './auth.service';
+
+import { LoginDto } from './dto/login.dto';
 
 @Controller('auth')
-export class AuthController {}
+export class AuthController {
+  constructor(private authService: AuthService) {} // Injeção de dependência
+
+  @Post('login')
+  login(@Body() data: LoginDto) {
+    return this.authService.login(data.email, data.senha); // Chama o serviço
+  }
+}
