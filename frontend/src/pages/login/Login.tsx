@@ -1,9 +1,12 @@
 import { useState } from "react";
 import api from "../../services/api";
+import { useAuth } from "../../contexts/AuthContext";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+
+  const { login } = useAuth();
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -14,7 +17,9 @@ export default function Login() {
         senha,
       });
 
-      console.log(response.data);
+      login(response.data.access_token, response.data.user);
+
+      console.log("Login realizado");
     } catch (error) {
       console.error(error);
     }

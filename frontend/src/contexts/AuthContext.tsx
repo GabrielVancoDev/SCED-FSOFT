@@ -1,13 +1,11 @@
 import { createContext, useContext, useState } from "react";
 
-// A Interface é responsável por definir os tipos de dados que serão usados na aplicação
 interface User {
   id: number;
   email: string;
   tipoUsuario: string;
 }
 
-// 
 interface AuthContextData {
   user: User | null;
   token: string | null;
@@ -15,12 +13,10 @@ interface AuthContextData {
   logout: () => void;
 }
 
-// Cria o contexto
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
-// Cria o provider
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<User | null>(null); // Exportando o contexto
+  const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(null);
 
   function login(token: string, user: User) {
