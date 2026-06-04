@@ -1,10 +1,13 @@
 import { useState } from "react";
 import api from "../../services/api";
 import { useAuth } from "../../contexts/AuthContext";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
+  const [email, setEmail] = useState(""); // Estados para armazenar os dados do formulário
+  const [senha, setSenha] = useState(""); // Estados para armazenar os dados do formulário
+
+  const Navigate = useNavigate();
 
   const { login } = useAuth();
 
@@ -18,8 +21,12 @@ export default function Login() {
       });
 
       login(response.data.access_token, response.data.user);
-
-      console.log("Login realizado");
+      // console.log("Login realizado");
+      if (response.data.user.tipoUsuario === "ADMIN") {
+        Navigate("/admin");
+      } else {
+        Navigate("/usuario");
+      }
     } catch (error) {
       console.error(error);
     }

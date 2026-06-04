@@ -7,7 +7,7 @@ interface User {
   tipoUsuario: string;
 }
 
-// 
+//
 interface AuthContextData {
   user: User | null;
   token: string | null;
@@ -55,4 +55,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
 export function useAuth() {
   return useContext(AuthContext);
+}
+
+export default function DashboardUser() {
+  return (
+    <div>
+      <h1>Dashboard Usuário</h1>
+    </div>
+  );
 }
