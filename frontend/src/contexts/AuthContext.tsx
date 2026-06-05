@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 interface User {
   id: number;
@@ -18,6 +18,16 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(null);
+
+  useEffect(() => {
+    const tokenStorage = localStorage.getItem("token");
+    const userStorage = localStorage.getItem("user");
+
+    if (tokenStorage && userStorage) {
+      setToken(tokenStorage);
+      setUser(JSON.parse(userStorage));
+    }
+  }, []);
 
   function login(token: string, user: User) {
     console.log("TOKEN:", token);
