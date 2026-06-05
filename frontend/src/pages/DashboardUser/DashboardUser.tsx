@@ -1,6 +1,8 @@
 import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 
+import Layout from "../../components/layout/Layout";
+
 export default function DashboardUser() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
@@ -11,12 +13,12 @@ export default function DashboardUser() {
   }
 
   return (
-    <div>
+    <Layout>
       <h1>Dashboard Usuário</h1>
 
-      <p>Bem-vindo, {user?.email}</p>
+      <p>Bem-vindo, {user?.nome}</p>
 
       <button onClick={handleLogout}>Sair</button>
-    </div>
+    </Layout>
   );
 }
