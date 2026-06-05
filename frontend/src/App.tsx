@@ -5,6 +5,7 @@ import DashboardAdmin from "./pages/DashboardAdmin/DashboardAdmin";
 import DashboardUser from "./pages/DashboardUser/DashboardUser";
 
 import PrivateRoute from "./routes/PrivateRoute";
+import Usuarios from "./pages/Usuarios/Usuarios";
 
 function App() {
   return (
@@ -26,6 +27,14 @@ function App() {
           element={
             <PrivateRoute>
               <DashboardUser />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/usuarios"
+          element={
+            <PrivateRoute>
+              <Usuarios />
             </PrivateRoute>
           }
         />
