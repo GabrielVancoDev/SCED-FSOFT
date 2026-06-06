@@ -7,6 +7,20 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Departamento {
+  id        Int     @id @default(autoincrement())
+  nome      String
+  sigla     String  @unique
+  descricao String?
+
+  ativo Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  usuarios User[]
+}
+
 enum TipoUsuario {
   ADMIN
   COMUM
@@ -14,22 +28,24 @@ enum TipoUsuario {
 }
 
 model User {
-  id              Int           @id @default(autoincrement())
+  id Int @id @default(autoincrement())
 
-  nome            String
-  email           String        @unique
-  senha           String
+  nome  String
+  email String @unique
+  senha String
 
-  matricula       String        @unique
+  matricula String @unique
 
-  tipoUsuario     TipoUsuario
+  tipoUsuario TipoUsuario
 
-  ativo           Boolean       @default(true)
+  ativo Boolean @default(true)
 
-  ultimoLogin     DateTime?
+  ultimoLogin DateTime?
 
-  departamentoId  Int?
+  departamentoId Int?
 
-  createdAt       DateTime      @default(now())
-  updatedAt       DateTime      @updatedAt
+  departamento Departamento? @relation(fields: [departamentoId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
