@@ -68,7 +68,7 @@ model StatusDocumento {
 model Documento {
   id                Int      @id @default(autoincrement())
 
-  numeroDocumento   String   @unique
+  numeroProtocolo String @unique
 
   assunto           String
   descricao         String?
