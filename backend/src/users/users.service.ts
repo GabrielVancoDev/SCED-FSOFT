@@ -19,10 +19,31 @@ export class UsersService {
     });
   }
 
+  // Encontrar todos os usuários
   async findAll() {
     return this.prisma.user.findMany({
       include: {
         departamento: true,
+      },
+    });
+  }
+
+  // Encontrar um usuário
+  async findOne(id: number) {
+    return this.prisma.user.findUnique({
+      where: { id },
+      include: {
+        departamento: true,
+      },
+    });
+  }
+
+  // Remover um usuário
+  async remove(id: number) {
+    return this.prisma.user.update({
+      where: { id },
+      data: {
+        ativo: false,
       },
     });
   }
