@@ -19,6 +19,8 @@ model Departamento {
   updatedAt DateTime @updatedAt
 
   usuarios User[]
+  documentos Documento[]
+
 }
 
 enum TipoUsuario {
@@ -45,6 +47,8 @@ model User {
   departamentoId Int?
 
   departamento Departamento? @relation(fields: [departamentoId], references: [id])
+
+  documentos Documento[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -79,20 +83,40 @@ model Documento {
   departamento      Departamento     @relation(fields: [departamentoId], references: [id])
   status            StatusDocumento  @relation(fields: [statusId], references: [id])
 
+  anexos            Anexo[]
+  historicos        HistoricoDocumento[]
+
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
 }
 
+model Anexo {
+  id              Int      @id @default(autoincrement())
+
+  nomeArquivo     String
+  caminhoArquivo  String
+
+  documentoId     Int
+
+  documento Documento @relation(fields: [documentoId], references: [id])
+
+  createdAt DateTime @default(now())
+}
+
 model HistoricoDocumento {
-  id               Int      @id @default(autoincrement())
+  id Int @id @default(autoincrement())
 
-  documentoId      Int
-  usuarioId        Int
+  documentoId Int
+  usuarioId Int
 
-  statusAnterior   String?
-  statusNovo       String
+  statusAnterior String?
+  statusNovo String
 
-  observacao       String?
+  observacao String?
 
-  dataAlteracao    DateTime @default(now())
+  documento Documento @relation(fields: [documentoId], references: [id])
+
+  usuario User @relation(fields: [usuarioId], references: [id])
+
+  createdAt DateTime @default(now())
 }
