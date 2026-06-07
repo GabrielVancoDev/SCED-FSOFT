@@ -13,14 +13,18 @@ export class UsersService {
 
     return this.prisma.user.create({
       data: {
-        ...data,
+        ...data, // Pega todos os dados do CreateUserDto
         senha: senhaHash,
       },
     });
   }
 
   async findAll() {
-    return this.prisma.user.findMany();
+    return this.prisma.user.findMany({
+      include: {
+        departamento: true,
+      },
+    });
   }
 
   async findByEmail(email: string) {

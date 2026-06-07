@@ -7,6 +7,7 @@ import {
 } from 'class-validator';
 
 import { TipoUsuario } from '../../common/enums/tipo-usuario.enum';
+import { IsInt } from 'class-validator';
 
 export class CreateUserDto {
   @IsString()
@@ -23,6 +24,9 @@ export class CreateUserDto {
   @IsString()
   @IsNotEmpty()
   matricula: string;
+
+  @IsInt()
+  departamentoId: number;
 
   @IsEnum(TipoUsuario)
   tipoUsuario: TipoUsuario;
