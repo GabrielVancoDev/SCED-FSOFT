@@ -7,9 +7,13 @@ import { PrismaModule } from './prisma/prisma.module';
 import { DepartamentosModule } from './departamentos/departamentos.module';
 import { DepartamentosService } from './departamentos/departamentos.service';
 import { DepartamentosController } from './departamentos/departamentos.controller';
+import { DocumentosModule } from './documentos/documentos.module';
+import { StatusDocumentoModule } from './status-documento/status-documento.module';
+import { AnexosModule } from './anexos/anexos.module';
+import { HistoricoDocumentoModule } from './historico-documento/historico-documento.module';
 
 @Module({
-  imports: [UsersModule, AuthModule, PrismaModule, DepartamentosModule],
+  imports: [UsersModule, AuthModule, PrismaModule, DepartamentosModule, DocumentosModule, StatusDocumentoModule, AnexosModule, HistoricoDocumentoModule],
   controllers: [AppController, DepartamentosController],
   providers: [AppService, DepartamentosService],
 })

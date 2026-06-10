@@ -18,9 +18,8 @@ model Departamento {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  usuarios User[]
+  usuarios   User[]
   documentos Documento[]
-
 }
 
 enum TipoUsuario {
@@ -50,53 +49,58 @@ model User {
 
   documentos Documento[]
 
+  historicos HistoricoDocumento[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model StatusDocumento {
-  id          Int      @id @default(autoincrement())
-  nome        String   @unique
-  descricao   String?
+  id        Int     @id @default(autoincrement())
+  nome      String  @unique
+  descricao String?
 
-  documentos  Documento[]
+  documentos Documento[]
 
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Documento {
-  id                Int      @id @default(autoincrement())
+  id Int @id @default(autoincrement())
 
   numeroProtocolo String @unique
 
-  assunto           String
-  descricao         String?
+  assunto   String
+  descricao String?
 
-  dataEntrada       DateTime @default(now())
+  dataEntrada DateTime @default(now())
 
-  usuarioId         Int
-  departamentoId    Int
-  statusId          Int
+  usuarioId      Int
+  departamentoId Int
+  statusId       Int
 
-  usuario           User             @relation(fields: [usuarioId], references: [id])
-  departamento      Departamento     @relation(fields: [departamentoId], references: [id])
-  status            StatusDocumento  @relation(fields: [statusId], references: [id])
+  usuario      User            @relation(fields: [usuarioId], references: [id])
+  departamento Departamento    @relation(fields: [departamentoId], references: [id])
+  status       StatusDocumento @relation(fields: [statusId], references: [id])
 
-  anexos            Anexo[]
-  historicos        HistoricoDocumento[]
+  anexos     Anexo[]
+  historicos HistoricoDocumento[]
 
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Anexo {
-  id              Int      @id @default(autoincrement())
+  id Int @id @default(autoincrement())
 
-  nomeArquivo     String
-  caminhoArquivo  String
+  nomeArquivo    String
+  caminhoArquivo String
 
-  documentoId     Int
+  tipoArquivo    String?
+  tamanhoArquivo Int?
+
+  documentoId Int
 
   documento Documento @relation(fields: [documentoId], references: [id])
 
@@ -107,10 +111,10 @@ model HistoricoDocumento {
   id Int @id @default(autoincrement())
 
   documentoId Int
-  usuarioId Int
+  usuarioId   Int
 
   statusAnterior String?
-  statusNovo String
+  statusNovo     String
 
   observacao String?
 
