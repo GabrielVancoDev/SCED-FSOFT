@@ -7,7 +7,7 @@ export class DocumentosService {
   constructor(private prisma: PrismaService) {}
 
   async create(data: CreateDocumentoDto) {
-    return this.prisma.documento.create({
+    const documento = await this.prisma.documento.create({
       data,
       include: {
         usuario: true,
@@ -15,6 +15,27 @@ export class DocumentosService {
         status: true,
       },
     });
+
+    const status = await this.prisma.statusDocumento.findUnique({
+      where: {
+        id: data.statusId,
+      },
+    });
+
+    await this.prisma.historicoDocumento.create({
+      data: {
+        documentoId: documento.id,
+        usuarioId: data.usuarioId,
+
+        statusAnterior: null,
+
+        statusNovo: status?.nome || 'PENDENTE',
+
+        observacao: 'Documento criado no sistema',
+      },
+    });
+
+    return documento;
   }
 
   async findAll() {
