@@ -5,10 +5,12 @@ import {
   Param,
   ParseIntPipe,
   Post,
+  Patch,
 } from '@nestjs/common';
 
 import { DocumentosService } from './documentos.service';
 import { CreateDocumentoDto } from './dto/create-documento.dto';
+import { UpdateStatusDocumentoDto } from './dto/update-status-documento.dto';
 
 @Controller('documentos')
 export class DocumentosController {
@@ -27,5 +29,13 @@ export class DocumentosController {
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.documentosService.findOne(id);
+  }
+
+  @Patch(':id/status')
+  updateStatus(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() data: UpdateStatusDocumentoDto,
+  ) {
+    return this.documentosService.updateStatus(id, data);
   }
 }
