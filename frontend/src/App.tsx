@@ -1,11 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Login from "./pages/Login/Login";
-import DashboardAdmin from "./pages/DashboardAdmin/DashboardAdmin";
-import DashboardUser from "./pages/Dashboard/DashboardUser";
-
+import Dashboard from "./pages/Dashboard/Dashboard";
 import PrivateRoute from "./routes/PrivateRoute";
 import Usuarios from "./pages/Usuarios/Usuarios";
+import CriarUsuario from "./pages/Usuarios/CriarUsuario";
 
 function App() {
   return (
@@ -17,7 +16,7 @@ function App() {
           path="/admin"
           element={
             <PrivateRoute>
-              <DashboardAdmin />
+              <Dashboard />
             </PrivateRoute>
           }
         />
@@ -26,7 +25,7 @@ function App() {
           path="/usuario"
           element={
             <PrivateRoute>
-              <DashboardUser />
+              <Dashboard />
             </PrivateRoute>
           }
         />
@@ -35,6 +34,15 @@ function App() {
           element={
             <PrivateRoute>
               <Usuarios />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/usuarios/novo"
+          element={
+            <PrivateRoute>
+              <CriarUsuario />
             </PrivateRoute>
           }
         />

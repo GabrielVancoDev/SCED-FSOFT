@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../../services/api";
 import Layout from "../../components/layout/Layout";
+import { Link } from "react-router-dom";
 
 // Banco de Dados
 interface User {
@@ -41,6 +42,8 @@ export default function Usuarios() {
     <Layout>
       <h1>Usuários</h1>
 
+      <Link to="/usuarios/criar">Criar Usuário</Link>
+      
       <table>
         <thead>
           <tr>
