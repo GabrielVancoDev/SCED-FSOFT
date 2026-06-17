@@ -10,7 +10,7 @@ import CriarDepartamento from "./pages/Departamentos/CriarDepartamento";
 import ListarDocumentos from "./pages/Documentos/ListarDocumentos";
 import CriarDocumento from "./pages/Documentos/CriarDocumento";
 import HistoricoDocumento from "./pages/Historico/HistoricoDocumento";
-
+import AnexosDocumentos from "./pages/Documentos/AnexosDocumentos";
 function App() {
   return (
     <BrowserRouter>
@@ -93,6 +93,15 @@ function App() {
           element={
             <PrivateRoute>
               <ListarDocumentos />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/documentos/:id/anexos"
+          element={
+            <PrivateRoute>
+              <AnexosDocumentos />
             </PrivateRoute>
           }
         />

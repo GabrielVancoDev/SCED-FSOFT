@@ -120,6 +120,9 @@ export default function ListarDocumentos() {
                 <Link to={`/documentos/${documento.id}/historico`}>
                   <button>Histórico</button>
                 </Link>
+                <Link to={`/documentos/${documento.id}/anexos`}>
+                  <button>Anexos</button>
+                </Link>
               </td>
             </tr>
           ))}
