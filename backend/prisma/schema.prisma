@@ -107,6 +107,7 @@ model Anexo {
   createdAt DateTime @default(now())
 }
 
+
 model HistoricoDocumento {
   id Int @id @default(autoincrement())
 
