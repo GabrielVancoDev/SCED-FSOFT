@@ -8,7 +8,7 @@ export default function Sidebar() {
           <Link to="/admin">Dashboard</Link>
         </li>
         <li>
-          <Link to="/departamentos">Deoartamentos</Link>
+          <Link to="/departamentos">Departamentos</Link>
         </li>
         <li>
           <Link to="/usuarios">Usuários</Link>

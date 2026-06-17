@@ -7,6 +7,9 @@ import Usuarios from "./pages/Usuarios/Usuarios";
 import CriarUsuario from "./pages/Usuarios/CriarUsuario";
 import ListarDepartamentos from "./pages/Departamentos/ListarDepartamentos";
 import CriarDepartamento from "./pages/Departamentos/CriarDepartamento";
+import ListarDocumentos from "./pages/Documentos/ListarDocumentos";
+import CriarDocumento from "./pages/Documentos/CriarDocumento";
+import HistoricoDocumento from "./pages/Historico/HistoricoDocumento";
 
 function App() {
   return (
@@ -58,12 +61,39 @@ function App() {
           }
         />
 
-         <Route
+        <Route
           path="/departamentos/novo"
           element={
             <PrivateRoute>
               <CriarDepartamento />
-            </PrivateRoute> 
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/documentos/novo"
+          element={
+            <PrivateRoute>
+              <CriarDocumento />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/documentos/:id/historico"
+          element={
+            <PrivateRoute>
+              <HistoricoDocumento />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/documentos"
+          element={
+            <PrivateRoute>
+              <ListarDocumentos />
+            </PrivateRoute>
           }
         />
       </Routes>
