@@ -5,6 +5,8 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import PrivateRoute from "./routes/PrivateRoute";
 import Usuarios from "./pages/Usuarios/Usuarios";
 import CriarUsuario from "./pages/Usuarios/CriarUsuario";
+import ListarDepartamentos from "./pages/Departamentos/ListarDepartamentos";
+import CriarDepartamento from "./pages/Departamentos/CriarDepartamento";
 
 function App() {
   return (
@@ -44,6 +46,24 @@ function App() {
             <PrivateRoute>
               <CriarUsuario />
             </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/departamentos"
+          element={
+            <PrivateRoute>
+              <ListarDepartamentos />
+            </PrivateRoute>
+          }
+        />
+
+         <Route
+          path="/departamentos/novo"
+          element={
+            <PrivateRoute>
+              <CriarDepartamento />
+            </PrivateRoute> 
           }
         />
       </Routes>

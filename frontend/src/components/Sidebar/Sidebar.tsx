@@ -7,11 +7,12 @@ export default function Sidebar() {
         <li>
           <Link to="/admin">Dashboard</Link>
         </li>
-
+        <li>
+          <Link to="/departamentos">Deoartamentos</Link>
+        </li>
         <li>
           <Link to="/usuarios">Usuários</Link>
         </li>
-
         <li>
           <Link to="/documentos">Documentos</Link>
         </li>
