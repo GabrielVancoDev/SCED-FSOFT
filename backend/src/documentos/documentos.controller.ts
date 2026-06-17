@@ -11,6 +11,8 @@ import {
 import { DocumentosService } from './documentos.service';
 import { CreateDocumentoDto } from './dto/create-documento.dto';
 import { UpdateStatusDocumentoDto } from './dto/update-status-documento.dto';
+import { Response } from 'express';
+import { join } from 'path';
 
 @Controller('documentos')
 export class DocumentosController {
