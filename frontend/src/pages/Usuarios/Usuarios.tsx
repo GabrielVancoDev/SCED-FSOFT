@@ -42,7 +42,8 @@ export default function Usuarios() {
     <Layout>
       <h1>Usuários</h1>
 
-      <Link to="/usuarios/criar">Criar Usuário</Link>
+      <Link to="/usuarios/novo">
+      <button>Criar Usuário</button></Link>
       
       <table>
         <thead>

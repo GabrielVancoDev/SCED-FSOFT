@@ -1,7 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
 import Layout from "../../components/layout/Layout";
+
+interface Departamento {
+  id: number;
+  nome: string;
+}
 
 export default function CriarUsuario() {
   const navigate = useNavigate();
@@ -11,6 +16,23 @@ export default function CriarUsuario() {
   const [senha, setSenha] = useState("");
   const [matricula, setMatricula] = useState("");
   const [tipoUsuario, setTipoUsuario] = useState("COMUM");
+  const [departamentoId, setDepartamentoId] = useState("");
+
+  const [departamentos, setDepartamentos] = useState<Departamento[]>([]);
+
+  useEffect(() => {
+    carregarDepartamentos();
+  }, []);
+
+  async function carregarDepartamentos() {
+    try {
+      const response = await api.get("/departamentos");
+      setDepartamentos(response.data);
+    } catch (error) {
+      console.error(error);
+      alert("Erro ao carregar departamentos");
+    }
+  }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -22,10 +44,10 @@ export default function CriarUsuario() {
         senha,
         matricula,
         tipoUsuario,
+        departamentoId: Number(departamentoId),
       });
 
       alert("Usuário cadastrado!");
-
       navigate("/usuarios");
     } catch (error) {
       console.error(error);
@@ -70,6 +92,18 @@ export default function CriarUsuario() {
           <option value="ADMIN">ADMIN</option>
           <option value="COMUM">COMUM</option>
           <option value="ESPECIAL">ESPECIAL</option>
+        </select>
+
+        <select
+          value={departamentoId}
+          onChange={(e) => setDepartamentoId(e.target.value)}
+        >
+          <option value="">Selecione o departamento</option>
+          {departamentos.map((departamento) => (
+            <option key={departamento.id} value={departamento.id}>
+              {departamento.nome}
+            </option>
+          ))}
         </select>
 
         <button type="submit">Salvar</button>
